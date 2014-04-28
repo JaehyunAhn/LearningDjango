@@ -25,6 +25,10 @@ class BookmarkSaveForm(forms.Form):
 			required=False,
 			widget=forms.TextInput(attrs={'size':64})
 			)
+	share = forms.BooleanField(
+			label='첫 페이지에서 공유합니다.',
+			required=False
+			)
 
 class RegistrationForm(forms.Form):
 	username = forms.CharField(label='사용자 이름',max_length=30)

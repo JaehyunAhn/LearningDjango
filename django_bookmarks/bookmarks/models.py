@@ -24,3 +24,13 @@ class Tag(models.Model):
 	# Show Korean Tags in console
 	def __unicode__(self):
 		return self.name
+
+# Shared Bookmark model p.130
+class SharedBookmark(models.Model):
+	bookmark = models.ForeignKey(Bookmark, unique=True)
+	date = models.DateTimeField(auto_now_add=True)
+	votes = models.IntegerField(default=1)
+	users_voted = models.ManyToManyField(User)
+
+	def __unicode__(self):
+		return '%s, %s' % (self.bookmark, self.votes)

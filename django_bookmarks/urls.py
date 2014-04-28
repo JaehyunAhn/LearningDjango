@@ -11,6 +11,8 @@ site_media = os.path.join(
 )
 
 urlpatterns = patterns('',
+	# Ajax
+	(r'^ajax/tag/autocomplete/$',ajax_tag_autocomplete),
 	(r'^$', main_page),
 	(r'^user/(\w+)/$', user_page),
 	(r'^login/$','django.contrib.auth.views.login'),
@@ -21,7 +23,9 @@ urlpatterns = patterns('',
 	# old version 1.2 below
 	# (r'^register/success/$',direct_to_template, 'template':'regestration/register_success.html'}),
 	(r'^register/success/$',TemplateView.as_view(template_name="registration/register_success.html")),
+	# Account Management
 	(r'^save/$', bookmark_save_page),
+	(r'^vote/$', bookmark_vote_page),
 	(r'^tag/([^\s]+)/$',tag_page),
 	(r'^tag/$',tag_cloud_page),
 	(r'^search/$', search_page),
