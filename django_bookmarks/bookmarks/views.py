@@ -17,6 +17,23 @@ from django.core.exceptions import ObjectDoesNotExist
 # 임시방편: line 90 @csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
 
+# 인기 순서대로 정렬
+from datetime import datetime, timedelta
+
+def popular_page(request):
+	today = datetime.today()
+	yesterday = today - timedelta(1)
+	shared_bookmarks = SharedBookmark.objects.filter(
+			date__gt=yesterday
+			)
+	shared_bookmarks = shared_bookmarks.order_by(
+			'-votes'
+			)[:10]
+	variables = RequestContext(request, {
+		'shared_bookmarks': shared_bookmarks
+		})
+	return render_to_response('popular_page.html', variables)
+
 def ajax_tag_autocomplete(request):
 	if request.GET.has_key('q'):
 		tags = Tag.objects.filter(name__istartswith=request.GET['q'])[:10]

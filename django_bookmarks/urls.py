@@ -13,6 +13,9 @@ site_media = os.path.join(
 urlpatterns = patterns('',
 	# Ajax
 	(r'^ajax/tag/autocomplete/$',ajax_tag_autocomplete),
+	# Browsing
+	(r'^popular/$', popular_page),
+	# Main page
 	(r'^$', main_page),
 	(r'^user/(\w+)/$', user_page),
 	(r'^login/$','django.contrib.auth.views.login'),
