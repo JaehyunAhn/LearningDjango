@@ -7,5 +7,5 @@ function search_submit() {
 }
 
 $(document).ready(function() {
-	$("#search-form").submit(search_submit);
+	$("#search-form").submit('search_submit');
 });

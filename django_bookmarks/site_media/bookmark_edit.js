@@ -15,7 +15,8 @@ function bookmark_save() {
 		tags: item.find("#id_tags").val(),
 		share: item.find("#id_share").val()
 	};
-	$.post("/save/?ajax",data, function(result) {
+	$.post("/save/?ajax", data, function(result) {
+		// 지금 여기로 안들어감
 		if(result != "failure") {
 			item.before($("li",result).get(0));
 			item.remove();
@@ -25,6 +26,7 @@ function bookmark_save() {
 			alert("Failed to validate bookmark before saving.");
 		}
 	});
+	// 403 2294 POST error: incoming POST request fails CSRF checks.
 	return false;
 }
 

@@ -14,10 +14,12 @@ from django_bookmarks.bookmarks.models import *
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
+# 임시방편: line 90 @csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
+
 def ajax_tag_autocomplete(request):
 	if request.GET.has_key('q'):
-		tags = \
-			Tag.objects.filter(name__istartswith=request.GET['q'])[:10]
+		tags = Tag.objects.filter(name__istartswith=request.GET['q'])[:10]
 		return HttpResponse('\n'.join(tag.name for tag in tags))
 	return HttpResponse()
 
@@ -84,38 +86,7 @@ def tag_page(request, tag_name):
 		})
 	return render_to_response('tag_page.html', variables)
 
-def _bookmark_save(request, form):
-	# 링크 가져오기
-	link, dummy = \
-			Link.objects.get_or_create(url=form.cleaned_data['url'])
-	# 북마크 가져오기
-	bookmark, created = Bookmark.objects.get_or_create(
-			user=request.user,
-			link=link
-			)
-	# 북마크 제목 수정
-	bookmark.title = form.cleaned_data['title']
-	# 예전 태그 제거
-	if not created:
-		bookmark.tag_set.clear()
-	# 새로운 태그 입력
-	tag_names = form.cleaned_data['tags'].split()
-	for tag_name in tag_names:
-		tag, dummy = Tag.objects.get_or_create(name=tag_name)
-		bookmark.tag_set.add(tag)
-	# 첫 페이제어 공유하도록 설정
-	if form.cleaned_data['share']:
-		shared_bookmark, created = SharedBookmark.objects.get_or_create(
-				bookmark=bookmark
-		)
-		if created:
-			shared_bookmark.users_voted.add(request.user)
-			shared_bookmark.save()
-
-	# 저장 및 공유
-	bookmark.save()
-	return bookmark
-
+@csrf_exempt # 임시방편 : import
 @login_required
 def bookmark_save_page(request):
 	# POST 요청일 경우 : 갱신
@@ -176,6 +147,37 @@ def bookmark_save_page(request):
 				variables
 				)
 
+def _bookmark_save(request, form):
+	# 링크 가져오기
+	link, dummy = Link.objects.get_or_create(url=form.cleaned_data['url'])
+	# 북마크 가져오기
+	bookmark, created = Bookmark.objects.get_or_create(
+			user=request.user,
+			link=link
+			)
+	# 북마크 제목 수정
+	bookmark.title = form.cleaned_data['title']
+	# 예전 태그 제거
+	if not created:
+		bookmark.tag_set.clear()
+	# 새로운 태그 입력
+	tag_names = form.cleaned_data['tags'].split()
+	for tag_name in tag_names:
+		tag, dummy = Tag.objects.get_or_create(name=tag_name)
+		bookmark.tag_set.add(tag)
+	# 첫 페이제어 공유하도록 설정
+	if form.cleaned_data['share']:
+		shared_bookmark, created = SharedBookmark.objects.get_or_create(
+				bookmark=bookmark
+		)
+		if created:
+			shared_bookmark.users_voted.add(request.user)
+			shared_bookmark.save()
+
+	# 저장 및 공유
+	bookmark.save()
+	return bookmark
+
 @login_required
 def bookmark_vote_page(request):
 	if request.GET.has_key('id'):
@@ -193,8 +195,8 @@ def bookmark_vote_page(request):
 			raise Http404('북마크를 찾을 수 없습니다.')
 
 # Syntax Error: page 153
-#	if request.META.has_key('HTTP_REFERER'):
-#		return HttpResponseRedirect(request.MET A['HTTP_REFERER'])
+	if request.META.has_key('HTTP_REFERER'):
+		return HttpResponseRedirect(request.META['HTTP_REFERER'])
 	
 	return HttpResponseRedirect('/')
 
