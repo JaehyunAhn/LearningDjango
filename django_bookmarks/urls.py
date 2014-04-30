@@ -17,6 +17,10 @@ urlpatterns = patterns('',
 	(r'^popular/$', popular_page),
 	# Main page
 	(r'^$', main_page),
+	# Comments
+	(r'^comments/', include('django.contrib.comments.urls')),
+	(r'^bookmark/(\d+)/$', bookmark_page),
+	# User Page
 	(r'^user/(\w+)/$', user_page),
 	(r'^login/$','django.contrib.auth.views.login'),
 	(r'^logout/$', logout_page),

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import os.path
 
+SITE_ID = 1
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
 		os.path.join(os.path.dirname(__file__), 'templates'),
@@ -40,6 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'django.contrib.comments',
+	'django.contrib.sites',
 	'django_bookmarks.bookmarks',
 )
 

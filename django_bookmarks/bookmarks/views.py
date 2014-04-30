@@ -20,6 +20,16 @@ from django.views.decorators.csrf import csrf_exempt
 # 인기 순서대로 정렬
 from datetime import datetime, timedelta
 
+def bookmark_page(request, bookmark_id):
+	shared_bookmark = get_object_or_404(
+			SharedBookmark,
+			id = bookmark_id
+			)
+	variables = RequestContext(request, {
+		'shared_bookmark': shared_bookmark
+		})
+	return render_to_response('bookmark_page.html', variables)
+
 def popular_page(request):
 	today = datetime.today()
 	yesterday = today - timedelta(1)
