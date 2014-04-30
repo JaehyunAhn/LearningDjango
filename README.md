@@ -1,6 +1,6 @@
-** DJANGO & PYTHON **
+## DJANGO & PYTHON 
 
-Jaehyun Ahn (jaehyunahn@sogang.ac.kr)
+### Jaehyun Ahn (jaehyunahn@sogang.ac.kr)
 
 
 * 오탈자
