@@ -17,6 +17,9 @@ urlpatterns = patterns('',
 	(r'^popular/$', popular_page),
 	# Main page
 	(r'^$', main_page),
+	# Admin page
+	(r'^admin/', include(admin.site.urls)),
+	# old version 1.2 (r'^admin/(.*)', admin.site.root),
 	# Comments
 	(r'^comments/', include('django.contrib.comments.urls')),
 	(r'^bookmark/(\d+)/$', bookmark_page),

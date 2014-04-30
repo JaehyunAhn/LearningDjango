@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import admin
 
 # Define 'Link' class that inherits 'models'
 class Link(models.Model): 
@@ -34,3 +35,4 @@ class SharedBookmark(models.Model):
 
 	def __unicode__(self):
 		return '%s, %s' % (self.bookmark, self.votes)
+
