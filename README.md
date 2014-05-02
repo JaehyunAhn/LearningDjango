@@ -9,3 +9,7 @@
 
 ### RSS Feed 문제
 	https://docs.djangoproject.com/en/1.2/ref/contrib/syndication/
+
+- RSS Feed URL 분배가 버전이 달라 제대로 구현이 어려웠다.
+- 관련 질문 & 해답
+	http://stackoverflow.com/questions/23424650/url-hashing-in-django-web-application/23425103?noredirect=1#23425103
