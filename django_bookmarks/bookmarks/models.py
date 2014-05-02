@@ -17,6 +17,9 @@ class Bookmark(models.Model):
 	# Show Korean Tags in console
 	def __unicode__(self):
 		return '%s, %s' % (self.user.username, self.link.url)
+	# Objects to Feed
+	def get_absolute_url(self):
+		return self.link.url
 
 # Define Bookmark Tag
 class Tag(models.Model):
