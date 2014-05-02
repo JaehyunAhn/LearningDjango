@@ -11,9 +11,15 @@ site_media = os.path.join(
 		os.path.dirname(__file__), 'site_media'
 )
 
+feeds = {
+	'recents' : RecentBookmarks(),
+	'user' : UserBookmarks()
+}
+
 urlpatterns = patterns('',
 	# Feeds
-	(r'^feeds/', RecentBookmarks()),
+	(r'^feeds/recents/',feeds['recents']),
+	(r'^feeds/user/$',feeds['user']),
 	# Ajax
 	(r'^ajax/tag/autocomplete/$',ajax_tag_autocomplete),
 	# Browsing
