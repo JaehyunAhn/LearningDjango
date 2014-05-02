@@ -5,9 +5,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 
 # p.175 error occurred : Page not Found Error : please refer urls.py
-class UserBookmarks(Feed):
+class UserBookmarks(Feed):	
 	def get_object(self, bits):
-		if bits.len() != 1:
+		if len(bits) != 1:
 			raise ObjectDoesNotExist
 		return User.objects.get(username=bits[0])
 
@@ -25,8 +25,9 @@ class UserBookmarks(Feed):
 
 class RecentBookmarks(Feed):
 	title = u'장고 북마크 | 최신 북마크'
-	link = '/feeds/recent/'
+	link = '/feeds/recents/'
 	description = u'장고 북마크 서비스를 통해서 등록된 북마크'
-	
+	title_template = '../templates/feeds/recent_description.html'
+
 	def items(self):
 		return Bookmark.objects.order_by('-id')[:10]

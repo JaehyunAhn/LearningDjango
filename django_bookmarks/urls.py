@@ -11,15 +11,9 @@ site_media = os.path.join(
 		os.path.dirname(__file__), 'site_media'
 )
 
-feeds = {
-	'recents' : RecentBookmarks(),
-	'user' : UserBookmarks()
-}
-
 urlpatterns = patterns('',
-	# Feeds
-	(r'^feeds/recents/',feeds['recents']),
-	(r'^feeds/user/$',feeds['user']),
+	# Feeds : Forward to URLS
+	(r'^feeds/',include('django_bookmarks.bookmarks.urls')),
 	# Ajax
 	(r'^ajax/tag/autocomplete/$',ajax_tag_autocomplete),
 	# Browsing
