@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.syndication.views import Feed
 from django_bookmarks.bookmarks.models import Bookmark
+from django_bookmarks.bookmarks.views import *
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 
