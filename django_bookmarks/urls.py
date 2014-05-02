@@ -4,7 +4,6 @@ from bookmarks.views import *
 from django.contrib import admin
 from django.views.generic import TemplateView
 from bookmarks.feeds import *
-from bookmarks.urls import *
 
 admin.autodiscover()
 
@@ -13,8 +12,8 @@ site_media = os.path.join(
 )
 
 urlpatterns = patterns('',
-	# Feeds
-	(r'^feeds/',include('bookmarks.urls')),
+	# Feeds : Forward to URLS
+	(r'^feeds/',include('django_bookmarks.bookmarks.urls')),
 	# Ajax
 	(r'^ajax/tag/autocomplete/$',ajax_tag_autocomplete),
 	# Browsing
