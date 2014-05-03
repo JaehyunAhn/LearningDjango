@@ -14,12 +14,15 @@ from django_bookmarks.bookmarks.models import *
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 # 임시방편: line 90 @csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
 
 # 인기 순서대로 정렬
 from datetime import datetime, timedelta
+
+ITEMS_PER_PAGE = 10
 
 def bookmark_page(request, bookmark_id):
 	shared_bookmark = get_object_or_404(
@@ -261,14 +264,32 @@ def logout_page(request):
 
 def user_page(request, username):
 	user = get_object_or_404(User, username=username)
-	bookmarks = user.bookmark_set.order_by('-id')
+	query_set = user.bookmark_set.order_by('-id')
+	paginator = Paginator(query_set, ITEMS_PER_PAGE)
+	
+	try:
+		page = int(request.GET['page'])
+	except:
+		page = 1
+	try:
+		bookmarks = paginator.page(page)
+	except:
+		raise Http404
 
 	variables = RequestContext(request, {
-		'bookmarks':bookmarks,
+		'bookmarks':bookmarks.object_list,
 		'username':username,
 		'show_tags':True,
 		'show_edit': username == request.user.username,
-		})
+		'show_paginator': paginator.num_pages > 1,
+		'has_prev' : bookmarks.has_previous(),
+		'has_next' : bookmarks.has_next(),
+		'page'	   : page,
+		'pages'    : paginator.num_pages,
+		# if ~ else None version changed!! 
+		'next_page': bookmarks.next_page_number() if bookmarks.has_next() else None,
+		'prev_page': bookmarks.previous_page_number() if bookmarks.has_previous() else None,
+	})
 	return render_to_response('user_page.html', variables)
 
 def main_page (request):

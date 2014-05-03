@@ -33,6 +33,17 @@
 		</li>
 	{% endfor %}
 	</ul>
+	{% if show_paginator %}
+		<div class = "paginator">
+			{% if has_prev %}
+				<a href="?page={{ prev_page }}">&laquo; 다음 페이지</a>
+			{% endif %}
+			{% if has_next %}
+				<a href="?page={{ next_page }}">이전페이지 &raquo;</a>
+			{% endif %}
+			(페이지 {{ page }} of {{ pages }})
+		</div>
+	{% endif %}
 {% else %}
 	<p>북마크가 없습니다.</p>
 {% endif %}

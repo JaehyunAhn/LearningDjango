@@ -3,12 +3,16 @@ Jaehyun Ahn (jaehyunahn@sogang.ac.kr)
 
 : 장고와 파이썬을 모두 최신 버전을 사용해서 완성한 북마크 튜토리얼 앱입니다. 버전 충돌과 사라진 정보가 너무나도 많아 즐거운 시간을 보냈습니다.
 
-> 현재 사용된 python 버전: 2.7
+> 현재 사용된 
+
+> python 버전: 2.7
 
 > 장고 1.6
 
 
 <hr>
+### 치명적 문제점
+> 본 서비스는 '삭제' 기능을 제공하지 않고 있다. 이건 스스로 공부해야 하는건가!! (미결)
 
 ### 문제해결 과정 및 정보
 
@@ -23,6 +27,8 @@ Jaehyun Ahn (jaehyunahn@sogang.ac.kr)
 - 너무 답답해서 올린 질문에 현답이 달렸다! 참고:[스택오버플로우](http://stackoverflow.com/questions/23424650/url-hashing-in-django-web-application/23425103?noredirect=1#23425103)
 - URL Hashing Error : 패러다임 문제로 판결 및 해결!
 
-
 #### Custom Feed 제작 (미궁)
 - Page not found 404 Error occurred
+
+#### Pagination 문제와 해결
+- github [참조](https://github.com/dcramer/django-paging/commit/d6e67d60a9aa7ff26c3821537a5ab946505fe9af)로 해결!
