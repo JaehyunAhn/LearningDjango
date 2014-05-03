@@ -1,11 +1,13 @@
 ## DJANGO & PYTHON
+|------------------------------------:|
+|Jaehyun Ahn (jaehyunahn@sogang.ac.kr)|
+
 : 장고와 파이썬을 모두 최신 버전을 사용해서 완성한 북마크 튜토리얼 앱입니다. 버전 충돌과 사라진 정보가 너무나도 많아 즐거운 시간을 보냈습니다.
 
 > 현재 사용된 python 버전: 2.7
 
 > 장고 1.6
 
-<div align="left"> Jaehyun Ahn (jaehyunahn@sogang.ac.kr) </div>
 
 <hr>
 
