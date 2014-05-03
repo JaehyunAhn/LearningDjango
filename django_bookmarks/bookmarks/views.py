@@ -13,6 +13,7 @@ from django_bookmarks.bookmarks.forms import *
 from django_bookmarks.bookmarks.models import *
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 # 임시방편: line 90 @csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
@@ -57,9 +58,15 @@ def search_page(request):
 	if request.GET.has_key('query'):
 		show_results = True
 		query = request.GET['query'].strip()
+		# 쿼리를 이용하여 search 기능 향상
 		if query:
+			keywords = query.split()
+			q = Q() # Empty query object
+			for keyword in keywords:
+				q = q & Q(title__icontains=keyword)
 			form = SearchForm({'query':query})
-			bookmarks = Bookmark.objects.filter (title__icontains=query)[:10]
+			bookmarks = Bookmark.objects.filter (q)[:10]
+
 	variables = RequestContext(request, { 'form':form,
 		'bookmarks':bookmarks,
 		'show_results': show_results,
