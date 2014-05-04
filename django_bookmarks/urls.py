@@ -4,6 +4,8 @@ from bookmarks.views import *
 from django.contrib import admin
 from django.views.generic import TemplateView
 from bookmarks.feeds import *
+#from django_bookmarks.bookmarks.views import *
+#from django_bookmarks.bookmarks.feeds import *
 
 admin.autodiscover()
 
@@ -12,6 +14,9 @@ site_media = os.path.join(
 )
 
 urlpatterns = patterns('',
+	# Friends
+	(r'^friends/(\w+)/$', friends_page),
+	(r'^friend/add/$', friend_add),
 	# Feeds : Forward to URLS
 	(r'^feeds/',include('django_bookmarks.bookmarks.urls')),
 	# Ajax

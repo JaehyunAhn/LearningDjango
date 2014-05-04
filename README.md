@@ -13,6 +13,8 @@ Jaehyun Ahn (jaehyunahn@sogang.ac.kr)
 <hr>
 ### 치명적 문제점
 > 본 서비스는 '삭제' 기능을 제공하지 않고 있다. 이건 스스로 공부해야 하는건가!! (미결)
+> 그렇다! DELETE는 스스로 공부해야 하는 것이었다! (이것은 어쩌면 작가의 들깨 속 잣 같은(발음 주의) 숙제일 수도 있겠다!
+> [여기](http://stackoverflow.com/questions/311188/how-do-i-edit-and-delete-data-in-django)를 참고하여 문제를 해결하여 작가의 숨은 의도를 충족시켜보자!
 
 ### 문제해결 과정 및 정보
 
