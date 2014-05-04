@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for django_bookmarks project.
 
@@ -12,7 +13,17 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import os.path
 
+SITE_HOST = '127.0.0.1:8000'
+DEFAULT_FROM_EMAIL = '장고 북마크 <django.bookmarks@example.com>'
+EMAIL_HOST = 'mail.yourisp.com'
+EMAIL_PORT = ''
+EMAIL_HOST_USER = 'username+mail.yourisp.com'
+EMAIL_HOST_PASSWORD = ''
 SITE_ID = 1
+
+# for Translation
+USE_I18N =True
+LANGUAGE_CODE = 'kr'
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
@@ -54,6 +65,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'django_bookmarks.urls'

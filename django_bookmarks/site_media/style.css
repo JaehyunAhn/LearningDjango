@@ -1,5 +1,9 @@
 #nav {
-	float: right;
+/*    background-color: cornflowerblue;
+    color:white;
+    text-align: right;
+    */
+    float: right;
 }
 
 #tag-cloud {
@@ -35,4 +39,11 @@ body {
 
 ul.bookmarks .edit {
 	font-size: 70%;
+}
+
+#footer {
+    /*background-color: cornflowerblue;
+    color:white;*/
+    margin-top: 2em;
+    text-align: center;
 }

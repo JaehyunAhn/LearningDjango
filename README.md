@@ -9,8 +9,16 @@ Jaehyun Ahn (jaehyunahn@sogang.ac.kr)
 
 > 장고 1.6
 
+> GNU gettext [0.18.3.1](https://gist.github.com/mbillard/1647940)
+
+> [compile-messages.py](https://github.com/pelle/talk.org/blob/master/django/bin/compile-messages.py)
+
 
 <hr>
+### 구현 못한 기능
+- 이메일 기능(p.199) : localhost에 ISP가 뭐지?
+- 국제화 기능(p.216) : complie-messages.py 를 제대로 구하지 못함
+
 ### 치명적 문제점
 > 본 서비스는 '삭제' 기능을 제공하지 않고 있다. 이건 스스로 공부해야 하는건가!! (미결)
 > 그렇다! DELETE는 스스로 공부해야 하는 것이었다! (이것은 어쩌면 작가의 들깨 속 잣 같은(발음 주의) 숙제일 수도 있겠다!

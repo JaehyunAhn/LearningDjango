@@ -5,9 +5,12 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 
+# 번역을 위한 장고 import
+from django.utils.translation import gettext_lazy as _
+
 class SearchForm(forms.Form):
 	query = forms.CharField(
-			label='검색어를 입력하세요.',
+			label=_('검색어를 입력하세요.'),
 			widget=forms.TextInput(attrs={'size':32})
 			)
 

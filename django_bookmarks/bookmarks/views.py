@@ -16,6 +16,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.core.paginator import Paginator
 
+# 번역을 위한 as 는 ~ 로 만드는 것을 의미: 단축키와 비슷
+from django.utils.translation import gettext as _
+
 # 임시방편: line 90 @csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
 
@@ -258,7 +261,7 @@ def bookmark_vote_page(request):
 				shared_bookmark.users_voted.add(request.user)
 				shared_bookmark.save()
 		except ObjectDoesNotExist:
-			raise Http404('북마크를 찾을 수 없습니다.')
+			raise Http404(_('북마크를 찾을 수 없습니다.'))
 
 # Syntax Error: page 153
 	if request.META.has_key('HTTP_REFERER'):
