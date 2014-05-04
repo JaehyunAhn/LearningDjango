@@ -15,6 +15,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.core.paginator import Paginator
+# Caching
+from django.views.decorators.cache import cache_page
 
 # 번역을 위한 as 는 ~ 로 만드는 것을 의미: 단축키와 비슷
 from django.utils.translation import gettext as _
@@ -116,6 +118,7 @@ def search_page(request):
 	else:
 		return render_to_response('search.html', variables)
 
+#@cache_page # Server error occurred
 def tag_cloud_page(request):
 	MAX_WEIGHT = 5
 	tags = Tag.objects.order_by('name')

@@ -15,9 +15,17 @@ Jaehyun Ahn (jaehyunahn@sogang.ac.kr)
 
 
 <hr>
+### 중요한 기능
+- 캐싱
+- 국제화
+- 서버 실행 (p.235)
+
 ### 구현 못한 기능
 - 이메일 기능(p.199) : localhost에 ISP가 뭐지?
 - 국제화 기능(p.216) : complie-messages.py 를 제대로 구하지 못함
+- 캐시 기능(p.227) : 완벽하게 구현하지 못함 unit cache에서 server Error가 발생
+        "그러나 전체 Cache 기능 성공!"
+- Mod_WSGI 기능 (apache 위에서 돌리기)
 
 ### 치명적 문제점
 > 본 서비스는 '삭제' 기능을 제공하지 않고 있다. 이건 스스로 공부해야 하는건가!! (미결)

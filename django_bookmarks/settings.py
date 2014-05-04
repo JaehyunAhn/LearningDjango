@@ -21,6 +21,10 @@ EMAIL_HOST_USER = 'username+mail.yourisp.com'
 EMAIL_HOST_PASSWORD = ''
 SITE_ID = 1
 
+# Cashing
+CACHE_BACKEND = 'simple:///'
+CACHE_MIDDLEWARE_SECONDS = 60 * 5 # 5 mins to Caching
+
 # for Translation
 USE_I18N =True
 LANGUAGE_CODE = 'kr'
@@ -38,7 +42,6 @@ SECRET_KEY = '%v+!dy#)z#)h@2yq0a&9*np6jpaosf_!pq1qzn=p-6y3n0haz1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -65,7 +68,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.CacheMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+)
+
+ADMINS = (
+    # Post code errors to my email
+    ('sogosonnet', 'sogosonnet@gmail.com'),
 )
 
 ROOT_URLCONF = 'django_bookmarks.urls'
