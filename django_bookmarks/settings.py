@@ -46,6 +46,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# allow 'pytz' data config
+USE_TZ = True
 
 # Application definition
 
@@ -59,6 +61,7 @@ INSTALLED_APPS = (
 	'django.contrib.comments',
 	'django.contrib.sites',
 	'django_bookmarks.bookmarks',
+    'django_bookmarks.todolist',
 )
 
 MIDDLEWARE_CLASSES = (
